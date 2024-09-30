@@ -1,33 +1,132 @@
 @tailwind base;
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--secondary) var(--primary);
+  font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+@keyframes bg-custom {
+  0%   {background: linear-gradient(to top left, #33ccff 0%, #ff99cc 100%);}
+  12.5%  {background: linear-gradient(to top, #33ccff 0%, #ff99cc 100%);}
+  25%  {background: linear-gradient(to top right, #33ccff 0%, #ff99cc 100%);}
+  37.5% {background: linear-gradient(to right, #33ccff 0%, #ff99cc 100%);}
+  50% {background: linear-gradient(to bottom right, #33ccff 0%, #ff99cc 100%);}
+  62.5% {background: linear-gradient(to bottom, #33ccff 0%, #ff99cc 100%);}
+  75% {background: linear-gradient(to bottom left, #33ccff 0%, #ff99cc 100%);}
+  87.5% {background: linear-gradient(to left, #33ccff 0%, #ff99cc 100%);}
+  100% {background: linear-gradient(to top left, #33ccff 0%, #ff99cc 100%);}
+}
+
+.bg-custom{
+  background: linear-gradient(to top left, #33ccff 0%, #ff99cc 100%);
+  animation: bg-custom 100s linear 1s infinite;
+  transition-delay: 1s;
+}
+@keyframes headline {
+  0%   {left:-20%; top:0px;}
+  100% { left:100%; top:0px;}
+}
+
+.headline {
+  position: relative;
+  animation-name: headline;
+  animation-duration: 15s;
+  animation-iteration-count: infinite;
+  transition: linear;
+}
+
+
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+.card{
+  transition: all ease-in-out 0.5s;
+
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+.hide{
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s, opacity 1.5s ease;
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+.card:hover .hide{
+  visibility: visible;
+  opacity: 1;
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+.card:hover .img{
+  scale: 1.1;
+  overflow: hidden;
+}
+
+/* Slider style */
+.swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  background: #fff;
+
+  /* Center slide text vertically */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.swiper-slide img {
+  display: block;
+  /* width: 100%;
+  height: 100%; */
+  object-fit: cover;
+}
+
+.autoplay-progress {
+  position: absolute;
+  right: 16px;
+  bottom: 16px;
+  z-index: 10;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  color: var(--swiper-theme-color);
+}
+
+.autoplay-progress svg {
+  --progress: 0;
+  position: absolute;
+  left: 0;
+  top: 0px;
+  z-index: 10;
+  width: 100%;
+  height: 100%;
+  stroke-width: 4px;
+  stroke: var(--swiper-theme-color);
+  fill: none;
+  stroke-dashoffset: calc(125.6px * (1 - var(--progress)));
+  stroke-dasharray: 125.6;
+  transform: rotate(-90deg);
+}
+
+
+.swiper2 {
+  padding-top: 50px !important;
+  padding-bottom: 50px !important;
+}
+
+.swiper-slide2 {
+  background-position: center;
+  background-size: cover;
+  width: 300px !important;
+  height: 300px !important;
+}
+
+.swiper-slide2 img {
+  display: block;
+  width: 100%;
+}
+/*Remove access to download image*/
+img{
+  pointer-events: none;
 }

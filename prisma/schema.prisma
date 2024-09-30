@@ -1,0 +1,62 @@
+// This is Prisma schema file,
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model users {
+  id          Int           @id @default(autoincrement())
+  firstName   String        @db.VarChar(50)
+  lastName    String        @db.VarChar(50)
+  email       String        @unique @db.VarChar(50)
+  img         String        @db.VarChar(300)
+  bio         String        @db.MediumText
+  mobile      String        @db.VarChar(50)
+  password    String
+  otp         String        @db.VarChar(10)
+  createdAt   DateTime      @default(now()) @db.Timestamp(0)
+  updatedAt   DateTime      @default(now()) @db.Timestamp(0)
+  artworks    artworks[]
+  comments    comments[]
+  transaction transaction[]
+}
+
+model artworks {
+  id          Int           @id @default(autoincrement())
+  title       String        @db.VarChar(100)
+  des         String        @db.LongText
+  price       Float         @db.Double
+  img         String        @db.VarChar(300)
+  category    String        @db.VarChar(50)
+  userId      Int
+  users       users         @relation(fields: [userId], references: [id], onDelete: Restrict, onUpdate: Cascade)
+  createdAt   DateTime      @default(now()) @db.Timestamp(0)
+  updatedAt   DateTime      @default(now()) @db.Timestamp(0)
+  comments    comments[]
+  transaction transaction[]
+}
+
+model comments {
+  id           Int      @id @default(autoincrement())
+  descriptions String   @db.VarChar(1000)
+  userId       Int
+  artId        Int
+  users        users    @relation(fields: [userId], references: [id], onDelete: Restrict, onUpdate: Cascade)
+  artworks     artworks @relation(fields: [artId], references: [id], onDelete: Restrict, onUpdate: Cascade)
+  createdAt    DateTime @default(now()) @db.Timestamp(0)
+  updatedAt    DateTime @default(now()) @updatedAt @db.Timestamp(0)
+}
+
+model transaction {
+  id        Int      @id @default(autoincrement())
+  amount    Float    @db.Double
+  userId    Int
+  artId     Int
+  users     users    @relation(fields: [userId], references: [id], onDelete: Restrict, onUpdate: Cascade)
+  artworks  artworks @relation(fields: [artId], references: [id], onDelete: Restrict, onUpdate: Cascade)
+  createdAt DateTime @default(now()) @db.Timestamp(0)
+}
