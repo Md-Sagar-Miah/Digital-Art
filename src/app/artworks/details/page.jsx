@@ -24,7 +24,7 @@ const page = async (props) => {
                         <small className='text-slate-400 mt-2 ms-1'>{`Created At: ${artwork.createdAt.toString().slice(0, 16)}`}</small>
                         <p>{artwork.des}</p>
                         <h3 className=' text-red-500 text-2xl font-semibold mb-1'>{artwork.price == 0 ? "Free" : `${artwork.price} Tk`}</h3>
-                        {artwork.price == 0 ? <a href={artwork.img} className=" w-full py-1 text-2xl rounded-md m-auto text-center block bg-red-500 hover:bg-red-600 font-semibold text-white" download={`${artwork.title}`}><span className=' animate-pulse'>GET</span></a> : <CheckoutButton title={artwork.title} category={artwork.category} totalAmount={artwork.price} />}
+                        {artwork.price == 0 ? <a href={artwork.img} className=" w-full py-1 text-2xl rounded-md m-auto text-center block bg-red-500 hover:bg-red-600 font-semibold text-white" download={`${artwork.title}`}><span className=' animate-pulse'>GET</span></a> : <CheckoutButton artId={artwork.id} title={artwork.title} category={artwork.category} totalAmount={artwork.price} />}
                     </div>
                     <div className=' sm:col-span-2 px-3 mt-4 sm:mt-20'>
                         <h1 className=' text-2xl font-bold mb-4 flex'>SHARED BY <Image className='ms-2 mt-2 animate-bounce' src={"/down-arrow.png"} height={30} width={30} alt='arrow' /></h1>

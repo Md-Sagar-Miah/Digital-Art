@@ -2,23 +2,30 @@
 import React, { useState } from 'react'
 import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure, Image } from "@nextui-org/react";
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
-const CheckoutButton = ({ title, category, totalAmount }) => {
+const CheckoutButton = ({ artId, title, category, totalAmount }) => {
+    const router = useRouter()
     const { isOpen, onOpen, onClose } = useDisclosure();
     const [paymentGateway, setPaymentGateway] = useState(null);
 
     const handleOpen = async () => {
-        const res = await fetch("/api/payment/initiate", {
-            method: "POST",
-            body: JSON.stringify({
-                title,
-                category,
-                totalAmount,
-            }),
-        })
-        const result = await res.json();
-        setPaymentGateway(result.data.desc)
-        onOpen();
+        try {
+            const res = await fetch("/api/payment/initiate", {
+                method: "POST",
+                body: JSON.stringify({
+                    artId,
+                    title,
+                    category,
+                    totalAmount,
+                }),
+            })
+            const result = await res.json();
+            setPaymentGateway(result.data.desc)
+            onOpen();
+        } catch (error) {
+            router.push("/login");
+        }
     }
 
     return (

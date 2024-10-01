@@ -1,4 +1,3 @@
-// This is Prisma schema file,
 generator client {
   provider = "prisma-client-js"
 }
@@ -29,15 +28,17 @@ model artworks {
   id          Int           @id @default(autoincrement())
   title       String        @db.VarChar(100)
   des         String        @db.LongText
-  price       Float         @db.Double
+  price       Float
   img         String        @db.VarChar(300)
   category    String        @db.VarChar(50)
   userId      Int
-  users       users         @relation(fields: [userId], references: [id], onDelete: Restrict, onUpdate: Cascade)
   createdAt   DateTime      @default(now()) @db.Timestamp(0)
   updatedAt   DateTime      @default(now()) @db.Timestamp(0)
+  users       users         @relation(fields: [userId], references: [id])
   comments    comments[]
   transaction transaction[]
+
+  @@index([userId], map: "artworks_userId_fkey")
 }
 
 model comments {
@@ -45,18 +46,25 @@ model comments {
   descriptions String   @db.VarChar(1000)
   userId       Int
   artId        Int
-  users        users    @relation(fields: [userId], references: [id], onDelete: Restrict, onUpdate: Cascade)
-  artworks     artworks @relation(fields: [artId], references: [id], onDelete: Restrict, onUpdate: Cascade)
   createdAt    DateTime @default(now()) @db.Timestamp(0)
   updatedAt    DateTime @default(now()) @updatedAt @db.Timestamp(0)
+  artworks     artworks @relation(fields: [artId], references: [id])
+  users        users    @relation(fields: [userId], references: [id])
+
+  @@index([artId], map: "comments_artId_fkey")
+  @@index([userId], map: "comments_userId_fkey")
 }
 
 model transaction {
   id        Int      @id @default(autoincrement())
-  amount    Float    @db.Double
+  amount    Float
+  tranId    String   @db.VarChar(20)
   userId    Int
   artId     Int
-  users     users    @relation(fields: [userId], references: [id], onDelete: Restrict, onUpdate: Cascade)
-  artworks  artworks @relation(fields: [artId], references: [id], onDelete: Restrict, onUpdate: Cascade)
   createdAt DateTime @default(now()) @db.Timestamp(0)
+  artworks  artworks @relation(fields: [artId], references: [id])
+  users     users    @relation(fields: [userId], references: [id])
+
+  @@index([artId], map: "transaction_artId_fkey")
+  @@index([userId], map: "transaction_userId_fkey")
 }
