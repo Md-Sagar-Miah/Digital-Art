@@ -12,7 +12,7 @@ export const POST = async (req, res) => {
         const result = await VerifyToken(token?.value);
         const user = await prisma.users.findUnique({ where: { email: result.email } })
         const { id, name, email, mobile } = user
-        const tran_id = (Math.floor(1000000000 + Math.random() * 9000000000)).toString();
+        const tran_id = (Math.floor(100000 + Math.random() * 900000)).toString();
         const init_url = "https://sandbox.sslcommerz.com/gwprocess/v4/api.php";
         const formData = new FormData();
         formData.append("store_id", "sagar66f8263e9b2d9")
@@ -23,10 +23,10 @@ export const POST = async (req, res) => {
         formData.append("total_amount", `${totalAmount}`)
         formData.append("currency", "BDT")
         formData.append("tran_id", `${tran_id}`)
-        formData.append("success_url", `${process.env.BASE_URL}/api/payment/success?tran_id=${tran_id}&artId=${artId}&userId=${id}&ammount=${totalAmount}`)
-        formData.append("fail_url", `${process.env.BASE_URL}/api/payment/fail?tran_id=${tran_id}`)
-        formData.append("cancel_url", `${process.env.BASE_URL}/api/payment/cancel?tran_id=${tran_id}`)
-        formData.append("ipn_url", `${process.env.BASE_URL}/api/payment/ipn?tran_id=${tran_id}`)
+        formData.append("success_url", `${process.env.BASE_URL}/api/payment/success?tran_id=${tran_id}&artId=${artId}&userId=${id}&amount=${totalAmount}`)
+        formData.append("fail_url", `${process.env.BASE_URL}/api/payment/failed?tran_id=${tran_id}&artId=${artId}&userId=${id}&amount=${totalAmount}`)
+        formData.append("cancel_url", `${process.env.BASE_URL}/api/payment/cancel?tran_id=${tran_id}&artId=${artId}&userId=${id}&amount=${totalAmount}`)
+        formData.append("ipn_url", `${process.env.BASE_URL}/api/payment/ipn?tran_id=${tran_id}&artId=${artId}&userId=${id}&amount=${totalAmount}`)
         formData.append("cus_name", `${name}`)
         formData.append("cus_email", `${email}`)
         formData.append("cus_add1", "Dhaka")

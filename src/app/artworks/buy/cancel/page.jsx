@@ -13,14 +13,14 @@ const page = (props) => {
                             alt="logo"
                             height={40}
                             radius="sm"
-                            src={'/check.png'}
+                            src={'/cross_mark.png'}
                             width={40}
 
                         />
                     </div>
                     <div className="">
-                        <h1 className="text-3xl font-bold w-fit m-auto">Payment Successful</h1>
-                        <p className=" text-xs text-gray-600 font-semibold w-fit m-auto">Thank you for your purchase!</p>
+                        <h1 className="text-4xl font-bold w-fit m-auto">Payment Cancel</h1>
+                        <p className=" text-xs text-gray-600 font-semibold w-fit m-auto">You cancel your payment process!</p>
                     </div>
                 </CardHeader>
                 <CardBody>
@@ -33,8 +33,8 @@ const page = (props) => {
                 </CardBody>
                 <hr className=' mx-3' />
                 <CardFooter>
-                    <Link className=' bg-green-500 p-2 w-full hover:bg-green-400 rounded-xl text-center font-bold' href="/user/profile">
-                        Go Back To Profile
+                    <Link className=' bg-black p-2 w-full hover:bg-slate-900 text-white rounded-xl text-center font-bold' href="/">
+                        Go Back To Home
                     </Link>
                 </CardFooter>
             </Card>

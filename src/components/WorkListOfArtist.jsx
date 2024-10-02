@@ -8,7 +8,7 @@ const WorkListOfArtist = ({ artist }) => {
             {
                 artist.artworks.map((art, index) => {
                     return <Link key={index} href={`/artworks/details?id=${art?.id}`}>
-                        <Card isFooterBlurred className="card w-full h-[300px] bg-slate-300 shadow-lg shadow-slate-400 rounded-lg">
+                        <Card isFooterBlurred className="card w-full h-[300px] bg-slate-300 shadow-lg shadow-slate-700 rounded-xl border-8">
                             <CardHeader className="absolute z-10 top-1 flex-col items-start">
 
                                 <h4 className="hide text-white/90 font-medium text-xl">{art.title.toUpperCase()}</h4>
