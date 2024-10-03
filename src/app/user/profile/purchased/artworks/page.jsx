@@ -42,13 +42,13 @@ const page = async ({ searchParams }) => {
                                             <p className="text-tiny text-white">{item.artworks.users.firstName + " " + item.artworks.users.lastName}</p>
 
                                         </div>
-                                        <p className='text-white'>{item.artworks.price == 0 ? "Free" : `${item.artworks.price} Tk`}</p>
+                                        {/* <a href={item.artworks.img} download={`${item.artworks.title}`}><Image className='bg-white rounded-full border border-white h-12 w-12' src={"/downloading.png"} height={10} width={10} alt='img' /></a> */}
                                     </CardFooter>
                                 </Card>
                             </Link>
                         })
                     }
-                </section> : <h2 className=' text-center text-slate-400 text-4xl'>No Shared Artworks Found !</h2>}
+                </section> : <h2 className='h-64 text-center text-slate-400 text-4xl'>No Purchased Artworks Found !</h2>}
             </div>
         </PlainLayout>
     )
