@@ -8,19 +8,9 @@ const getComments = async (artId) => {
     const result = await ((await fetch(`${process.env.BASE_URL}/api/artworks/comments/all/?artId=${artId}`, { cache: 'no-store' })).json())
     return result["data"];
 }
-const loginUser = async () => {
-    try {
-        const cookieStore = cookies();
-        const token = cookieStore.get('token');
-        const data = await VerifyToken(token.value);
-        return data.id;
-    } catch (error) {
-        return null;
-    }
-}
-const CommentsDetails = async ({ artId }) => {
+
+const CommentsDetails = async ({ artId, userId }) => {
     const comments = await getComments(artId)
-    const userId = await loginUser();
     return (
         <section className='mb-3 mt-4'>
             {

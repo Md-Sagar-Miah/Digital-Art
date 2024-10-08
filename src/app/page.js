@@ -4,8 +4,8 @@ import NewArtist from "@/components/NewArtist";
 import Newest from "@/components/Newest";
 import Slider from "@/components/Slider";
 const getData = async () => {
-  const sliderData = await ((await fetch(`${process.env.BASE_URL}/api/artworks/slider`)).json());
-  const newArtistsData = await ((await fetch(`${process.env.BASE_URL}/api/user/newest`)).json());
+  const sliderData = await ((await fetch(`${process.env.BASE_URL}/api/artworks/slider`, { cache: 'no-store' })).json());
+  const newArtistsData = await ((await fetch(`${process.env.BASE_URL}/api/user/newest`, { cache: 'no-store' })).json());
   return { sliderData: sliderData["data"], newArtistsData: newArtistsData["data"] };
 }
 

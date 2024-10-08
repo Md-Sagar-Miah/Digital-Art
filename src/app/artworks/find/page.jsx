@@ -4,7 +4,7 @@ import { Card, CardHeader, CardFooter, Image } from "@nextui-org/react";
 import Link from 'next/link';
 
 const getArtWorks = async (category) => {
-    const data = await ((await fetch(`${process.env.BASE_URL}/api/artworks/arts?category=${category}`)).json());
+    const data = await ((await fetch(`${process.env.BASE_URL}/api/artworks/arts?category=${category}`, { cache: 'no-store' })).json());
     return data['data'];
 }
 

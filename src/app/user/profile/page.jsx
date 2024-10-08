@@ -43,7 +43,7 @@ const page = async () => {
                                 />
                                 <small className='text-slate-400 mt-2 ms-1'>{`Since: ${user.createdAt.toString().slice(0, 16)}`}</small>
                             </CardBody>
-                            <CardFooter className="pb-0 mb-0 pt-2 px-4 flex-col">
+                            <CardFooter className="pb-0 mb-0 pt-2 px-4 flex-col items-start">
                                 <h4 className="font-bold uppercase text-2xl">{`${user.firstName} ${user.lastName}`}</h4>
                                 <p className="text-tiny font-semibold">{"Email: " + user.email}</p>
                                 <p className="text-tiny font-semibold">{"Mobile: " + user.mobile}</p>

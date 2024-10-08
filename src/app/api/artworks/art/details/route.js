@@ -5,8 +5,12 @@ export const GET = async (req, res) => {
     try {
         const { searchParams } = new URL(req.url);
         const id = parseInt(searchParams.get('id'));
+        const userId = parseInt(searchParams.get('userId'));
         const prisma = new PrismaClient();
         const data = await prisma.artworks.findUnique({
+            where: {
+                id: id
+            },
             select: {
                 id: true,
                 title: true,
@@ -24,10 +28,14 @@ export const GET = async (req, res) => {
                         email: true
                     }
                 },
+                transaction: {
+                    where: {
+                        userId: userId
+                    },
+                }
+
             },
-            where: {
-                id: id
-            },
+
         })
         return NextResponse.json({ status: 'Success', data }, { status: 200 });
     } catch (error) {

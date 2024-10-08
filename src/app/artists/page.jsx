@@ -4,7 +4,7 @@ import { Card, CardFooter, Image, Button } from "@nextui-org/react";
 import Link from 'next/link';
 
 const getUsers = async () => {
-  const users = await ((await fetch("http://localhost:3000/api/user/all")).json());
+  const users = await ((await fetch("http://localhost:3000/api/user/all", { cache: 'no-store' })).json());
   return users["data"]
 }
 

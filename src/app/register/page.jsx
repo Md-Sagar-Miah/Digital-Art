@@ -113,7 +113,7 @@ const page = () => {
 
           <h2 className="text-2xl font-bold m-auto w-fit mb-6 text-red-500">Registration Form</h2>
           <div className='w-fit m-auto mb-8'>
-            {image ? <Image className='mb-4 border rounded-full w-20 h-20' src={URL.createObjectURL(image)} width={80} height={80} alt='profile' /> : <Image className='mb-4 border rounded-full' src="/user.png" width={80} height={80} alt='profile' />}
+            {image ? <Image className='mb-4 border rounded-full w-20 h-20' src={URL.createObjectURL(image)} width={80} height={80} alt='profile' /> : <Image className='mb-4 border rounded-full' src="/profile.png" width={80} height={80} alt='profile' />}
             <label htmlFor="file" className=' bg-orange-500 px-2 py-1 rounded font-semibold w-20 ms-2'>Upload</label>
             <input type="file" name='file' id='file' onChange={handleImage} hidden />
           </div>

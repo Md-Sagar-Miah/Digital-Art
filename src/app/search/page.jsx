@@ -4,7 +4,7 @@ import { Card, CardHeader, CardFooter, Image } from "@nextui-org/react";
 import Link from 'next/link';
 
 const getArtWorks = async (keyword) => {
-    const data = await ((await fetch(`${process.env.BASE_URL}/api/artworks/arts/search?keyword=${keyword}`)).json());
+    const data = await ((await fetch(`${process.env.BASE_URL}/api/artworks/arts/search?keyword=${keyword}`, { cache: 'no-store' })).json());
     return data['data'];
 }
 
@@ -40,7 +40,7 @@ const page = async (props) => {
                                         <p className="text-tiny text-white">{art.users.firstName + " " + art.users.lastName}</p>
 
                                     </div>
-                                    <p className='text-white'>{art.price == 0 ? "Free" : `${ar.price} Tk`}</p>
+                                    <p className='text-white'>{art.price == 0 ? "Free" : `${art.price} Tk`}</p>
                                 </CardFooter>
                             </Card>
                         </Link>

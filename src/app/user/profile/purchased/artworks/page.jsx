@@ -16,7 +16,7 @@ const page = async ({ searchParams }) => {
     return (
         <PlainLayout>
             <div className=''>
-                <h1 className=' text-4xl text-red-500 font-bold italic border-b-4 border-black w-fit p-2 m-auto my-4 flex'>MY WORKS <Image className='ms-2 mt-2 animate-bounce' src={"/down-arrow.png"} height={30} width={30} alt='arrow' /></h1>
+                <h1 className=' text-4xl text-red-500 font-bold italic border-b-4 border-black w-fit p-2 m-auto my-4 flex'>MY COLLECTIONS <Image className='ms-2 mt-2 animate-bounce' src={"/down-arrow.png"} height={30} width={30} alt='arrow' /></h1>
                 {artworksLength ? <section className='grid grid-flow-row grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 px-1 sm:px-4 md:px-8 lg:px-20 py-8'>
                     {
                         data.map((item, index) => {
