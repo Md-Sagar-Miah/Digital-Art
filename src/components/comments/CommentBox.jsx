@@ -41,7 +41,7 @@ const CommentBox = ({ id }) => {
                 disableAnimation
                 disableAutosize
                 value={commentData}
-                className=' bg-red-200 sm:max-w-96 rounded-xl'
+                className=' bg-red-200 sm:max-w-96 rounded-xl z-0'
                 onChange={handleCommentData}
 
             />

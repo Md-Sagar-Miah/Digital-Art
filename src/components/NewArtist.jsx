@@ -42,8 +42,8 @@ const NewArtist = ({ newArtits }) => {
             >
                 {
                     newArtits.map((user, index) => {
-                        return <SwiperSlide key={index} className='swiper-slide2'>
-                            <Link href={`/artists/profile?id=${user.id}`}><img src={user.img} /> </Link>
+                        return <SwiperSlide key={index} className='swiper-slide2 overflow-hidden'>
+                            <Link href={`/artists/profile?id=${user.id}`}><img className=' ' src={user.img} alt='img' /> </Link>
                         </SwiperSlide>
 
 

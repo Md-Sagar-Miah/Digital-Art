@@ -10,6 +10,7 @@ import { useRouter } from 'next/navigation';
 const page = () => {
     const router = useRouter()
     const [isVisible, setIsVisible] = useState(false);
+    const [isVisible2, setIsVisible2] = useState(false);
     const [data, setData] = useState({
         oldPassword: "",
         newPassword: "",
@@ -37,7 +38,7 @@ const page = () => {
             } else {
                 toast.error("Authentication error !");
             }
-        } else if (data.newPassword.length <= 6) {
+        } else if (data.newPassword.length < 6) {
             toast.error("Password length must be atleast 6 characters !")
         } else {
             toast.error("Type confirm password correctly !")
@@ -45,6 +46,7 @@ const page = () => {
 
     }
     const toggleVisibility = () => setIsVisible(!isVisible);
+    const toggleVisibility2 = () => setIsVisible2(!isVisible2);
     return (
         <PlainLayout>
             <form onSubmit={handlePasswordChange} className=' w-11/12 m-auto sm:w-1/2 my-12 px-10 py-4 bg-green-50 shadow-2xl shadow-red-400 rounded-md border-x-8 border-x-red-500'>
@@ -76,15 +78,15 @@ const page = () => {
                     <Input
                         placeholder="Type your new password"
                         endContent={
-                            <button className="focus:outline-none" type="button" onClick={toggleVisibility}>
-                                {isVisible ? (
+                            <button className="focus:outline-none" type="button" onClick={toggleVisibility2}>
+                                {isVisible2 ? (
                                     <EyeSlashFilledIcon className="text-2xl text-default-400 pointer-events-none" />
                                 ) : (
                                     <EyeFilledIcon className="text-2xl text-default-400 pointer-events-none" />
                                 )}
                             </button>
                         }
-                        type={isVisible ? "text" : "password"}
+                        type={isVisible2 ? "text" : "password"}
                         onChange={handleValue}
 
                         className="shadow-2xl shadow-black mb-8 border-b border-black hover:border-red-500 hover:duration-1000"
@@ -99,15 +101,15 @@ const page = () => {
                     <Input
                         placeholder="Retype your new password"
                         endContent={
-                            <button className="focus:outline-none" type="button" onClick={toggleVisibility}>
-                                {isVisible ? (
+                            <button className="focus:outline-none" type="button" onClick={toggleVisibility2}>
+                                {isVisible2 ? (
                                     <EyeSlashFilledIcon className="text-2xl text-default-400 pointer-events-none" />
                                 ) : (
                                     <EyeFilledIcon className="text-2xl text-default-400 pointer-events-none" />
                                 )}
                             </button>
                         }
-                        type={isVisible ? "text" : "password"}
+                        type={isVisible2 ? "text" : "password"}
                         onChange={handleValue}
 
                         className="shadow-2xl shadow-black mb-8 border-b border-black hover:border-red-500 hover:duration-1000"

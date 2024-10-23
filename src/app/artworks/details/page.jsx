@@ -37,7 +37,10 @@ const page = async (props) => {
                     <div className=' sm:col-span-6 p-2'>
                         <h1 className=' text-red-500 text-4xl font-bold mb-1'>{artwork?.title.toUpperCase()}</h1>
                         <h6 className=' text-xl text-slate-400 mb-2'>{artwork?.category}</h6>
-                        <Image className=' h-fit w-full' src={artwork?.img} priority={true} sizes="(max-width: 768px) 100vw, 33vw" height={10} width={10} alt='Image' />
+                        <span className=' relative'>
+                            <Image className=' h-fit w-full' src={artwork?.img} priority={true} sizes="(max-width: 768px) 100vw, 33vw" height={10} width={10} alt='Image' />
+                            <span className=' absolute h-full w-full top-9 left-10 text-6xl text-gray-400 opacity-30'>DIGITAL ART</span>
+                        </span>
                         <small className='text-slate-400 mt-2 ms-1'>{`Created At: ${artwork.createdAt.toString().slice(0, 16)}`}</small>
                         <p>{artwork.des}</p>
                         <h3 className=' text-red-500 text-2xl font-semibold mb-1'>{artwork.price == 0 ? "Free" : `${artwork.price} Tk`}</h3>
